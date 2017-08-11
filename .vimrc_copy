@@ -38,6 +38,7 @@ Plugin 'leshill/vim-json'
 Plugin 'eduardosanzb/tagman.vim'
 Plugin 'prettier/vim-prettier'
 Plugin 'ternjs/tern_for_vim'
+Plugin 'Galooshi/vim-import-js'
 " React
 Plugin 'epilande/vim-es2015-snippets'
 Plugin 'epilande/vim-react-snippets'
@@ -94,7 +95,6 @@ let g:UltiSnipsExpandTrigger="<c-l>"
 set completeopt-=preview
 
 set cursorline
-set number
 syntax enable
 set background=dark
 let g:solarizaed_termicolors = 256 " New line!!
@@ -132,6 +132,13 @@ highlight link SyntasticStyleWarningSign SignColumn
 
 " vim-javascript
 let g:javascript_plugin_flow = 1
+let g:javascript_plugin_jsdoc = 1
+
+" For shrinking the code using the indentation
+set foldmethod=indent
+set foldlevelstart=20
+
+
 
 
 
@@ -147,6 +154,8 @@ set path+=**
 set wildmenu
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+let g:ctrlp_working_path_mode = 0
+
 
 " jsBeautify
 map <c-f> :call JsBeautify()<cr>
@@ -193,23 +202,18 @@ function! NERDTreeToggleInCurDir()
    endif
 endfunction
 
-" Relative number functionality
+set relativenumber
 function! NumberToggle()
- if(&relativenumber == 1)
-   set number
- else
-   set relativenumber
- endif
+  if(&relativenumber == 1)
+    set norelativenumber
+    set number
+  else
+    set nonumber
+    set relativenumber
+  endif
 endfunc
 
-" Return to absoulte number line if we are not in vim
-nnoremap <C-l> :call NumberToggle()<cr>
-:au FocusLost * :set number
-:au FocusGained * :set relativenumber
-set relativenumber
-" Just relative numbers in normal mode
-" autocmd InsertEnter * :set number
-" autocmd InsertLeave * :set relativenumber
+nnoremap <leader>n :call NumberToggle()<cr>
 
 " Use ctrl-[hjkl] to select the active split!
 nmap <silent> <c-k> :wincmd k<CR>
