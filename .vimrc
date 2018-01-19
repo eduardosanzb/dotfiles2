@@ -17,12 +17,6 @@ Plugin 'wesQ3/vim-windowswap'
 Plugin 'vim-scripts/ZoomWin'
 " THeme
 Plugin 'NLKNguyen/papercolor-theme'
-Plugin 'rakr/vim-one'
-Plugin 'gosukiwi/vim-atom-dark'
-
-" NerdFonts
-" Plugin 'ryanoasis/vim-devicons'
-
 " Snippets
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
@@ -58,8 +52,6 @@ Plugin 'w0rp/ale'
 
 "bar
 Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-
 
 
 Plugin 'chemzqm/vim-jsx-improve'
@@ -82,27 +74,6 @@ Plugin 'yegappan/mru'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
-"Credit joshdick
-"Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
-"If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
-"(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
-if (empty($TMUX))
-  if (has("nvim"))
-  "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
-  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-  endif
-  "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
-  "Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
-  " < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
-  if (has("termguicolors"))
-    set termguicolors
-  endif
-endif
-
-" User term 256 colors
-set t_Co=256
-
-highlight Comment cterm=italic
 
 " show existing tab with 4 spaces width
 set tabstop=2
@@ -126,25 +97,16 @@ set completeopt-=preview
 set cursorline
 syntax enable
 set background=dark
-let g:solarizaed_termicolors = 256
-let g:one_allow_italics = 1 " I love italic for comments
+let g:solarizaed_termicolors = 256 " New line!!
+set t_Co=256
 syntax on
-" colorscheme PaperColor
-colorscheme one
+colorscheme PaperColor
 
-" for NERD fonts:
-set encoding=utf8
-" set guifont=Fira_Code_Retina_Nerd_Font_Complete:h11
-" let g:airline_powerline_fonts = 1
 
-" Status bar
-set laststatus=2
+" eslint
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
-let g:airline_section_z = ''
-let g:airline_theme='one'
-" eslint
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
@@ -171,10 +133,10 @@ highlight link SyntasticStyleWarningSign SignColumn
 " vim-javascript
 let g:javascript_plugin_flow = 1
 let g:javascript_plugin_jsdoc = 1
-
-" For shrinking the code using the indentation
 set foldmethod=indent
-set foldlevelstart=20
+
+
+
 
 " react
 let g:jsx_ext_required = 0 " Allow JSX in normal JS files
@@ -188,8 +150,6 @@ set path+=**
 set wildmenu
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-let g:ctrlp_working_path_mode = 0
-
 
 " jsBeautify
 map <c-f> :call JsBeautify()<cr>
@@ -248,53 +208,6 @@ function! NumberToggle()
 endfunc
 
 nnoremap <leader>n :call NumberToggle()<cr>
-
-function MoveToPrevTab()
-  "there is only one window
-  if tabpagenr('$') == 1 && winnr('$') == 1
-    return
-  endif
-  "preparing new window
-  let l:tab_nr = tabpagenr('$')
-  let l:cur_buf = bufnr('%')
-  if tabpagenr() != 1
-    close!
-    if l:tab_nr == tabpagenr('$')
-      tabprev
-    endif
-    sp
-  else
-    close!
-    exe "0tabnew"
-  endif
-  "opening current buffer in new window
-  exe "b".l:cur_buf
-endfunc
-
-function MoveToNextTab()
-  "there is only one window
-  if tabpagenr('$') == 1 && winnr('$') == 1
-    return
-  endif
-  "preparing new window
-  let l:tab_nr = tabpagenr('$')
-  let l:cur_buf = bufnr('%')
-  if tabpagenr() < tab_nr
-    close!
-    if l:tab_nr == tabpagenr('$')
-      tabnext
-    endif
-    sp
-  else
-    close!
-    tabnew
-  endif
-  "opening current buffer in new window
-  exe "b".l:cur_buf
-endfunc
-
-map <leader>M :call MoveToNextTab()<CR><C-w>H
-map <leader>N :call MoveToPrevTab()<CR><C-w>H
 
 " Use ctrl-[hjkl] to select the active split!
 nmap <silent> <c-k> :wincmd k<CR>
