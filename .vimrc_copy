@@ -1,14 +1,16 @@
 " Optilyz machine
-set nocompatible              " be iMproved, required
-filetype off                  " required
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+set nocompatible " be iMproved, required
+filetype off " required
+set rtp += ~/.vim/bundle / Vundle.vim
+call vundle# begin()
 Bundle 'gmarik/vundle'
 filetype plugin indent on
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'L9'
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+Plugin 'rstacruz/sparkup', {
+  'rtp': 'vim/'
+}
 Plugin 'wakatime/vim-wakatime'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
@@ -76,11 +78,13 @@ Plugin 'terryma/vim-multiple-cursors'
 Plugin 'tpope/vim-commentary'
 Plugin 'maxbrunsfeld/vim-yankstack'
 Plugin 'yegappan/mru'
-" Plugin 'itchyny/lightline.vim' "funny line
+" Plugin 'itchyny/lightline.vim' "
+funny line
 
 
-call vundle#end()            " required
-filetype plugin indent on    " required
+call vundle# end()
+" required
+filetype plugin indent on " required
 
 "Credit joshdick
 "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
@@ -88,217 +92,221 @@ filetype plugin indent on    " required
 "(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
 if (empty($TMUX))
   if (has("nvim"))
-  "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
-  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-  endif
+    "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
+let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
+endif
   "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
-  "Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
-  " < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
-  if (has("termguicolors"))
-    set termguicolors
-  endif
+"Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
+" < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
+if (has("termguicolors"))
+  set termguicolors
+endif
 endif
 
-" User term 256 colors
-set t_Co=256
+  " User term 256 colors
+set t_Co = 256
 
-highlight Comment cterm=italic
+highlight Comment cterm = italic
 
-" show existing tab with 4 spaces width
-set tabstop=2
-" " when indenting with '>', use 4 spaces width
-set shiftwidth=2
-" " On pressing tab, insert 4 spaces
+  " show existing tab with 4 spaces width
+set tabstop = 2 " "
+when indenting with '>', use 4 spaces width
+set shiftwidth = 2 " "
+On pressing tab, insert 4 spaces
 set expandtab
 set autoindent
 set smartindent
-"" ctrl c to add indent automatic with delimit
-imap <C-c> <CR><Esc>O
+  ""
+ctrl c to add indent automatic with delimit
+imap < C - c > < CR > < Esc > O
 
-"" YCM config
-let g:ycm_add_preview_to_completeopt=0
-let g:ycm_confirm_extra_conf=0
+  ""
+YCM config
+let g: ycm_add_preview_to_completeopt = 0
+let g: ycm_confirm_extra_conf = 0
 
-" SnippetsConfig
-let g:UltiSnipsExpandTrigger="<c-l>"
-set completeopt-=preview
+  " SnippetsConfig
+let g: UltiSnipsExpandTrigger = "<c-l>"
+set completeopt -= preview
 
 set cursorline
 syntax enable
-set background=dark
-let g:solarizaed_termicolors = 256
-let g:one_allow_italics = 1 " I love italic for comments
+set background = dark
+let g: solarizaed_termicolors = 256
+let g: one_allow_italics = 1 " I love italic for comments
 syntax on
-" colorscheme PaperColor
+  " colorscheme PaperColor
 colorscheme one
 
-" for NERD fonts:
-set encoding=utf8
-" set guifont=Fira_Code_Retina_Nerd_Font_Complete:h11
+  " for NERD fonts:
+set encoding = utf8 " set guifont=Fira_Code_Retina_Nerd_Font_Complete:h11
 " let g:airline_powerline_fonts = 1
 
 " Status bar
-set laststatus=2
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:airline_section_z = ''
-let g:airline_theme='one'
+set laststatus = 2
+set statusline += % #warningmsg#
+set statusline += % {
+  SyntasticStatuslineFlag()
+}
+set statusline += % *
+  let g: airline_section_z = ''
+let g: airline_theme = 'one'
 " eslint
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_javascript_eslint_exe = 'npm run lint --'
+let g: syntastic_always_populate_loc_list = 1
+let g: syntastic_auto_loc_list = 1
+let g: syntastic_check_on_open = 1
+let g: syntastic_check_on_wq = 0
+let g: syntastic_javascript_checkers = ['eslint']
+let g: syntastic_javascript_eslint_exe = 'npm run lint --'
 
 " prettier
-let g:prettier#config#bracket_spacing = 'true'
+let g: prettier# config# bracket_spacing = 'true'
 
-let g:ale_sign_column_always = 1
+let g: ale_sign_column_always = 1
 
-let g:syntastic_error_symbol = '❌'
-let g:ale_sign_error = '❌'
-let g:syntastic_style_error_symbol = '⁉️  '
-let g:syntastic_warning_symbol = '⚠️  '
-let g:ale_sign_warning = '⚠️ '
-let g:syntastic_style_warning_symbol = '💩 '
+let g: syntastic_error_symbol = '❌'
+let g: ale_sign_error = '❌'
+let g: syntastic_style_error_symbol = '⁉️  '
+let g: syntastic_warning_symbol = '⚠️  '
+let g: ale_sign_warning = '⚠️ '
+let g: syntastic_style_warning_symbol = '💩 '
 highlight link SyntasticErrorSign SignColumn
 highlight link SyntasticWarningSign SignColumn
 highlight link SyntasticStyleErrorSign SignColumn
 highlight link SyntasticStyleWarningSign SignColumn
 
-" vim-javascript
-let g:javascript_plugin_flow = 1
-let g:javascript_plugin_jsdoc = 1
+  " vim-javascript
+let g: javascript_plugin_flow = 1
+let g: javascript_plugin_jsdoc = 1
 
-" For shrinking the code using the indentation
-set foldmethod=indent
-set foldlevelstart=20
+  " For shrinking the code using the indentation
+set foldmethod = indent
+set foldlevelstart = 20
 
-" react
-let g:jsx_ext_required = 0 " Allow JSX in normal JS files
+  " react
+let g: jsx_ext_required = 0 " Allow JSX in normal JS files
 
 " highlight search
 set hls
-nnoremap <CR> :nohlsearch<CR><CR>
+nnoremap < CR >: nohlsearch < CR > < CR >
 
-" finding files
-set path+=**
-set wildmenu
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-let g:ctrlp_working_path_mode = 0
-
+  " finding files
+set path += **
+  set wildmenu
+autocmd StdinReadPre *
+  let s: std_in = 1
+autocmd VimEnter *
+  if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+let g: ctrlp_working_path_mode = 0 " Ignore some folders and files for CtrlP indexing
+let g: ctrlp_custom_ignore = {\
+  'dir': '\.git$\|\.yardoc\|node_modules\|log\|tmp$',
+  \'file': '\.so$\|\.dat$|\.DS_Store$'\
+}
 
 " jsBeautify
-map <c-f> :call JsBeautify()<cr>
+map < c - f >: call JsBeautify() < cr >
 
-" Mapping ESC in insert mode and command mode to double i
-imap ii <C-[>
-cmap ii <C-[>
+  " Mapping ESC in insert mode and command mode to double i
+imap ii < C - [ >
+    cmap ii < C - [ >
 
-set mouse=a
-
-
-" for the bar set the eslint pedos
-set laststatus=2
-function! LinterStatus() abort
-   let l:counts = ale#statusline#Count()
-
-   let l:all_errors = l:counts.error + l:counts.style_error
-   let l:all_non_errors = l:counts.total - l:all_errors
-
-   return l:counts.total == 0 ? 'OK' : printf(
-   \   '%dW %dE',
-   \   all_non_errors,
-   \   all_errors
-   \)
-endfunction
-
-set statusline=%{LinterStatus()}
+      set mouse = a
 
 
-nmap <silent> <C-w> <Plug>(ale_previous_wrap)
-nmap <silent> <C-s> <Plug>(ale_next_wrap)
+      " for the bar set the eslint pedos
+      set laststatus = 2
 
-" Remap of zoomWin
-nnoremap <silent> <leader>w :ZoomWin<CR>
+      function !LinterStatus() abort
+      let l: counts = ale# statusline# Count()
 
-" Open NERDTree in the directory of the current file (or /home if no files open)
-nmap <silent> <C-i> :call NERDTreeToggleInCurDir()<cr>
-function! NERDTreeToggleInCurDir()
-   " If NERDTree is open in the current buffer
-   if (exists("t:NERDTreeBufName") && bufwinnr(t:NERDTreeBufName) != -1)
-    exe ":NERDTreeClose"
-   else
-    exe ":NERDTreeFind"
-   endif
-endfunction
+      let l: all_errors = l: counts.error + l: counts.style_error
+      let l: all_non_errors = l: counts.total - l: all_errors
 
-set relativenumber
-function! NumberToggle()
-  if(&relativenumber == 1)
-    set norelativenumber
-    set number
-  else
-    set nonumber
-    set relativenumber
-  endif
-endfunc
+      return l: counts.total == 0 ? 'OK' : printf(\'%dW %dE', \all_non_errors, \all_errors\)
+      endfunction
 
-nnoremap <leader>n :call NumberToggle()<cr>
+      set statusline = % {
+        LinterStatus()
+      }
 
-function MoveToPrevTab()
-  "there is only one window
-  if tabpagenr('$') == 1 && winnr('$') == 1
-    return
-  endif
-  "preparing new window
-  let l:tab_nr = tabpagenr('$')
-  let l:cur_buf = bufnr('%')
-  if tabpagenr() != 1
-    close!
-    if l:tab_nr == tabpagenr('$')
+
+      nmap < silent > < C - w > < Plug > (ale_previous_wrap)
+      nmap < silent > < C - s > < Plug > (ale_next_wrap)
+
+      " Remap of zoomWin
+      nnoremap < silent > < leader > w: ZoomWin < CR >
+
+      " Open NERDTree in the directory of the current file (or /home if no files open)
+      nmap < silent > < C - i >: call NERDTreeToggleInCurDir() < cr >
+      function !NERDTreeToggleInCurDir()
+      " If NERDTree is open in the current buffer
+      if (exists("t:NERDTreeBufName") && bufwinnr(t: NERDTreeBufName) != -1)
+        exe ":NERDTreeClose"
+      else
+        exe ":NERDTreeFind"
+      endif
+      endfunction
+
+      set relativenumber
+
+      function !NumberToggle()
+      if ( & relativenumber == 1)
+        set norelativenumber
+      set number
+      else
+        set nonumber
+      set relativenumber
+      endif
+      endfunc
+
+      nnoremap < leader > n: call NumberToggle() < cr >
+
+      function MoveToPrevTab()
+      "there is only one window
+      if tabpagenr('$') == 1 && winnr('$') == 1
+      return
+      endif "preparing new window
+      let l: tab_nr = tabpagenr('$')
+      let l: cur_buf = bufnr('%')
+      if tabpagenr() != 1
+      close!
+      if l: tab_nr == tabpagenr('$')
       tabprev
-    endif
-    sp
-  else
-    close!
-    exe "0tabnew"
-  endif
-  "opening current buffer in new window
-  exe "b".l:cur_buf
-endfunc
+      endif
+      sp
+      else
+        close!
+        exe "0tabnew"
+      endif "opening current buffer in new window
+      exe "b".l: cur_buf
+      endfunc
 
-function MoveToNextTab()
-  "there is only one window
-  if tabpagenr('$') == 1 && winnr('$') == 1
-    return
-  endif
-  "preparing new window
-  let l:tab_nr = tabpagenr('$')
-  let l:cur_buf = bufnr('%')
-  if tabpagenr() < tab_nr
-    close!
-    if l:tab_nr == tabpagenr('$')
+      function MoveToNextTab()
+      "there is only one window
+      if tabpagenr('$') == 1 && winnr('$') == 1
+      return
+      endif "preparing new window
+      let l: tab_nr = tabpagenr('$')
+      let l: cur_buf = bufnr('%')
+      if tabpagenr() < tab_nr
+      close!
+      if l: tab_nr == tabpagenr('$')
       tabnext
-    endif
-    sp
-  else
-    close!
-    tabnew
-  endif
-  "opening current buffer in new window
-  exe "b".l:cur_buf
-endfunc
+      endif
+      sp
+      else
+        close!
+        tabnew
+      endif "opening current buffer in new window
+      exe "b".l: cur_buf
+      endfunc
 
-map <leader>M :call MoveToNextTab()<CR><C-w>H
-map <leader>N :call MoveToPrevTab()<CR><C-w>H
+      map < leader > M: call MoveToNextTab() < CR > < C - w > H
+      map < leader > N: call MoveToPrevTab() < CR > < C - w > H
 
-" Use ctrl-[hjkl] to select the active split!
-nmap <silent> <c-k> :wincmd k<CR>
-nmap <silent> <c-j> :wincmd j<CR>
-nmap <silent> <c-h> :wincmd h<CR>
-nmap <silent> <c-l> :wincmd l<CR>
-set backspace=indent,eol,start
+      " Use ctrl-[hjkl] to select the active split!
+      nmap < silent > < c - k >: wincmd k < CR >
+      nmap < silent > < c - j >: wincmd j < CR >
+      nmap < silent > < c - h >: wincmd h < CR >
+      nmap < silent > < c - l >: wincmd l < CR >
+      set backspace = indent, eol, start
